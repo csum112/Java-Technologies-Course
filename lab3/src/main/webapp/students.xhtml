@@ -8,15 +8,15 @@
 <h:head></h:head>
 <h:body>
     <h:form>
-        <h2>Add a student</h2>
-        <p:outputLabel for="studentName" value="Student Name:"/>
+        <h2>#{msg['student.header']}</h2>
+        <p:outputLabel for="studentName" value="#{msg['student.header']}"/>
         <p:inputText id="studentName" value="#{studentBean.name}"/>
 
         <p:outputLabel for="exams"/>
         <p:selectManyCheckbox id="exams" value="#{studentBean.selectedExamNames}">
             <f:selectItems value="#{studentBean.examNames}"/>
         </p:selectManyCheckbox>
-        <p:commandButton value="Submit" action="#{studentBean.submit}"/>
+        <p:commandButton value="#{msg['student.submit_label']}" action="#{studentBean.submit}"/>
     </h:form>
 </h:body>
 
