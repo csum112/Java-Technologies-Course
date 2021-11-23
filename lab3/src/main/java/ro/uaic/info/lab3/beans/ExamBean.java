@@ -7,6 +7,8 @@ import ro.uaic.info.lab3.util.FormHandler;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Time;
+import java.time.Duration;
 import java.util.Date;
 
 @Data
@@ -16,10 +18,10 @@ public class ExamBean {
     @Inject
     private FormHandler<Exam> handler;
     private String name;
-    private Date start;
-    private Date end;
+    private Time start;
+    private Long duration;
 
     public void submit() {
-        handler.handle(new Exam(name, start, end));
+        handler.handle(new Exam(name, start, duration));
     }
 }

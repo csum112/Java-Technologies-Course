@@ -1,0 +1,25 @@
+<ui:composition template="/page.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+   <ui:define name="content">
+      <h:form id="dataEditForm">
+         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true"/>
+         <p:growl id="growl" sticky="true" showDetail="true"/>
+         <ui:insert name="dataEditContent">
+            Data editor
+         </ui:insert>
+         <div class="ui-fluid">
+            <div class="ui-colorpicker_submit">
+               <p:commandButton id="submit_exam" value="#{message.submitExam}" action="#{dataEdit.submit(exam)}"
+                                rendered="#{examBoolean}"/>
+               <p:commandButton id="submit_student" value="#{message.submitStudent}"
+                                action="#{dataEdit.submit(student)}" rendered="#{studentBoolean}"/>
+               <p:button id="cancel" immediate="true" value="#{message.cancel}"/>
+            </div>
+         </div>
+      </h:form>
+   </ui:define>
+</ui:composition>

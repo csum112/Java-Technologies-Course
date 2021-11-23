@@ -18,8 +18,8 @@ public class ExamRepository {
     public void save(Exam exam) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(INSERT_STATEMENT);
         stmt.setString(1, exam.getName());
-        stmt.setDate(2, new Date(exam.getStartDate().getTime()));
-        stmt.setDate(3, new Date(exam.getEndDate().getTime()));
+        stmt.setTime(2, exam.getStart());
+        stmt.setLong(3, exam.getDuration());
         stmt.executeUpdate();
         stmt.close();
     }
@@ -32,7 +32,7 @@ public class ExamRepository {
             String name = resultSet.getString(1);
             Date startDate = resultSet.getDate(2);
             Date endDate = resultSet.getDate(3);
-            exams.add(new Exam(name, startDate, endDate));
+//            exams.add(new Exam(name, startDate, endDate));
         }
         stmt.close();
         return exams;
