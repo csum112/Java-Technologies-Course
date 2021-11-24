@@ -33,7 +33,8 @@ public class StudentBean {
     private List<String> selectedExamNames;
 
     @Inject
-    public StudentBean(ExamRepository examRepository, FormHandler<Student> formHandler) throws SQLException {
+    @SuppressWarnings("CdiInjectionPointsInspection")
+    public StudentBean(ExamRepository examRepository, FormHandler<Student> formHandler) {
         this.examRepository = examRepository;
         this.studentFormHandler = formHandler;
         this.examNames = examRepository.findAll()
@@ -46,9 +47,11 @@ public class StudentBean {
     public void submit() {
         final List<Exam> selectedExams = selectedExamNames.stream()
                 .map(examRepository::findById)
-                .filter(Optional::isEmpty)
+                .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());
+        System.out.println(selectedExamNames);
+        System.out.println(selectedExams);
         this.studentFormHandler.handle(new Student(name, selectedExams));
     }
 }

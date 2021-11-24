@@ -1,4 +1,4 @@
-package ro.uaic.info.lab3.config;
+package ro.uaic.info.lab3.services;
 
 
 import ro.uaic.info.lab3.entites.Exam;

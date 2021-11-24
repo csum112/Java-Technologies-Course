@@ -16,6 +16,12 @@
             <p:commandButton value="#{msg['index.english_label']}" action="#{localeBean.changeLanguage('en')}"/>
             <p:commandButton value="#{msg['index.spanish_label']}" action="#{localeBean.changeLanguage('es')}"/>
         </div>
+
+        <div>
+           <h:form>
+               <p:commandButton value="Log" action="#{testBean.test}" />
+           </h:form>
+        </div>
     </h:body>
 </f:view>
 </html>
