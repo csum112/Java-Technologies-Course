@@ -2,13 +2,11 @@ package ro.uaic.info.lab3.beans;
 
 import lombok.Data;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Locale;
-import java.util.Optional;
 
 @Data
 @Named

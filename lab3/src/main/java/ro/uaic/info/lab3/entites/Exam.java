@@ -1,15 +1,23 @@
 package ro.uaic.info.lab3.entites;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Time;
-import java.time.Duration;
-import java.util.Date;
 
-@Data
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Exam implements Serializable {
-    private final String name;
-    private final Time start;
-    private final Long duration;
+    @Id
+    private String name;
+    private Time start;
+    private Long duration;
 }

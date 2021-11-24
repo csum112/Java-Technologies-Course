@@ -1,10 +1,9 @@
 package ro.uaic.info.lab3.repositories;
 
-import ro.uaic.info.lab3.entites.Exam;
+import ro.uaic.info.lab3.entites.Resource;
 
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ExamRepository extends Dao<Exam> {
-
+public class ResourceRepository extends Dao<Resource> {
 }

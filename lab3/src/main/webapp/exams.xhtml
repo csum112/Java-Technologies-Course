@@ -14,10 +14,10 @@
         <p:inputText id="examName" value="#{examBean.name}"/>
 
         <p:outputLabel for="examStart" value="#{msg['exams.start_label']}"/>
-        <p:datePicker id="examStart"  showTime="true" value="#{examBean.start}"/>
+        <p:datePicker id="examStart"  timeOnly="true" pattern="HH:mm" value="#{examBean.start}"/>
 
         <p:outputLabel for="examEndTime" value="#{msg['exams.end_label']}"/>
-        <p:datePicker id="examEndTime"  showTime="true" value="#{examBean.duration}"/>
+        <p:inputText id="examEndTime" value="#{examBean.duration}"/>
 
         <p:commandButton value="#{msg['exams.submit_label']}" action="#{examBean.submit}"/>
     </h:form>

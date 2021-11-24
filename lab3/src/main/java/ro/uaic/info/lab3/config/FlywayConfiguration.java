@@ -1,10 +1,12 @@
 package ro.uaic.info.lab3.config;
 
 import com.googlecode.flyway.core.Flyway;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -14,16 +16,21 @@ import javax.sql.DataSource;
 @WebListener
 @ApplicationScoped
 public class FlywayConfiguration implements ServletContextListener {
-    @Inject
-    private DataSource dataSource;
+    private final static String DATASOURCE_CONTEXT = "java:jboss/datasources/localPostgresDS";
 
+    @SneakyThrows
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        log.info("Running flyway migration");
-        System.out.println("Running migration");
+        log.debug("Running flyway migration");
         Flyway flyway = new Flyway();
-        flyway.setDataSource(dataSource);
+        flyway.setDataSource(getDataSource());
         flyway.setInitOnMigrate(true);
         flyway.migrate();
+        log.debug("Finished running flyway migration");
+    }
+
+
+    private static DataSource getDataSource() throws NamingException {
+        return (DataSource) new InitialContext().lookup(DATASOURCE_CONTEXT);
     }
 }
