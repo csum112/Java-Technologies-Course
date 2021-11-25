@@ -4,7 +4,10 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ez="http://java.sun.com/jsf/composite/components"
+
+>
 <h:head>
 </h:head>
 <h:body>
@@ -14,12 +17,16 @@
         <p:inputText id="examName" value="#{examBean.name}"/>
 
         <p:outputLabel for="examStart" value="#{msg['exams.start_label']}"/>
-        <p:datePicker id="examStart"  timeOnly="true" pattern="HH:mm" value="#{examBean.start}"/>
+        <p:datePicker id="examStart" timeOnly="true" pattern="HH:mm" value="#{examBean.start}"/>
 
         <p:outputLabel for="examEndTime" value="#{msg['exams.end_label']}"/>
         <p:inputText id="examEndTime" value="#{examBean.duration}"/>
 
         <p:commandButton value="#{msg['exams.submit_label']}" action="#{examBean.submit}"/>
     </h:form>
+
+    <div>
+        <ez:genericDataView data="#{examBean.getData()}"/>
+    </div>
 </h:body>
 </html>

@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:comp="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head/>
+
+<h:body>
+    <comp:interface>
+        <comp:attribute name="data" required="true"/>
+    </comp:interface>
+    <comp:implementation>
+        <div class="card">
+            #{cc.attrs.data.items.toString()}
+            <p:dataTable value="#{cc.attrs.data.items}" var="item">
+                <ui:repeat var="headerValue" value="#{cc.attrs.data.headers}}">
+                    <p:column headerText="#{headerValue}">
+                        <h:outputText value="#{item.get(headerValue)}"/>
+                    </p:column>
+                    hello
+                </ui:repeat>
+            </p:dataTable>
+        </div>
+    </comp:implementation>
+</h:body>
+</html>
