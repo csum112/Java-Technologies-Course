@@ -1,11 +1,13 @@
 package ro.uaic.info.lab3.services;
 
+import lombok.extern.slf4j.Slf4j;
 import ro.uaic.info.lab3.entites.ExamWithResources;
 import ro.uaic.info.lab3.entites.Resource;
 import ro.uaic.info.lab3.repositories.ExamWithResourcesRepository;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,8 +20,13 @@ public class ResourceTracker {
     private ExamWithResourcesRepository examWithResourcesRepository;
     private final Map<Resource, List<ExamWithResources>> map = new HashMap<>();
 
+    /**
+     * Re-initialize the map every hour
+     */
+    @Schedule(hour = "*")
     @PostConstruct
     private void init() {
+        map.clear();
         examWithResourcesRepository
                 .findAll()
                 .forEach(exam -> {
