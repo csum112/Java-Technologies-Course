@@ -7,7 +7,6 @@ import ro.uaic.info.lab3.entites.Student_;
 import ro.uaic.info.lab3.util.SearchCriteria;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;

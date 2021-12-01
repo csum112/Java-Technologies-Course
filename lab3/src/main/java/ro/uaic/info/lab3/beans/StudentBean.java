@@ -1,7 +1,6 @@
 package ro.uaic.info.lab3.beans;
 
 import lombok.Data;
-import lombok.SneakyThrows;
 import ro.uaic.info.lab3.entites.Exam;
 import ro.uaic.info.lab3.entites.Student;
 import ro.uaic.info.lab3.repositories.ExamRepository;

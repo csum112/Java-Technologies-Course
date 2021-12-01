@@ -1,8 +1,7 @@
-package ro.uaic.info.lab3.services;
+package ro.uaic.info.lab3.util;
 
 import ro.uaic.info.lab3.dto.Table;
 import ro.uaic.info.lab3.entites.Exam;
-import ro.uaic.info.lab3.util.TableDataMapper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

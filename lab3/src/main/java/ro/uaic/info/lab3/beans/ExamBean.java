@@ -9,13 +9,11 @@ import ro.uaic.info.lab3.repositories.ExamRepository;
 import ro.uaic.info.lab3.util.FormHandler;
 import ro.uaic.info.lab3.util.TableDataMapper;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
-import javax.transaction.UserTransaction;
 import java.sql.Time;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,7 +47,7 @@ public class ExamBean {
     @SuppressWarnings("unchecked")
     private <E extends Exam> E createExam() {
         final Time startTime = new Time(start.getTime());
-        return (E) new ExamWithResources(name, startTime, duration, List.of(new ro.uaic.info.lab3.entites.Resource("Manual")));
+        return (E) new ExamWithResources(name, startTime, duration, List.of(new ro.uaic.info.lab3.entites.Resource("Manual", 1)));
     }
 
     public Table getData() {

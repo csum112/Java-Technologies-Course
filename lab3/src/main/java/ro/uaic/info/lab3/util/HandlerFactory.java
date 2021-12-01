@@ -1,10 +1,8 @@
-package ro.uaic.info.lab3.services;
+package ro.uaic.info.lab3.util;
 
 import ro.uaic.info.lab3.entites.Exam;
 import ro.uaic.info.lab3.entites.Student;
 import ro.uaic.info.lab3.repositories.StudentRepository;
-import ro.uaic.info.lab3.services.ExamPersistStrategy;
-import ro.uaic.info.lab3.util.FormHandler;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

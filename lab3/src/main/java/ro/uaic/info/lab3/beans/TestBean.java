@@ -7,7 +7,6 @@ import ro.uaic.info.lab3.util.SearchCriteria;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Slf4j

@@ -35,6 +35,10 @@ public abstract class Dao<E> {
         em.persist(e);
     }
 
+    public void update(E e) {
+        em.merge(e);
+    }
+
     public List<E> findAll() {
         String ALL_QUERY = "SELECT e FROM %s e";
         return em.createQuery(String.format(ALL_QUERY, type.getSimpleName()), type).getResultList();
