@@ -4,16 +4,20 @@ import lombok.extern.slf4j.Slf4j;
 import ro.uaic.info.lab3.entites.ExamWithResources;
 import ro.uaic.info.lab3.entites.Resource;
 import ro.uaic.info.lab3.repositories.ExamWithResourcesRepository;
+import ro.uaic.info.lab3.util.TimeItInterceptor;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.interceptor.Interceptor;
+import javax.interceptor.Interceptors;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Interceptors(TimeItInterceptor.class)
 @Singleton
 public class ResourceTracker {
     @EJB
