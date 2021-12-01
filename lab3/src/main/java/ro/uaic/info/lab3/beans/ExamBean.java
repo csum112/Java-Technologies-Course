@@ -10,6 +10,7 @@ import ro.uaic.info.lab3.util.FormHandler;
 import ro.uaic.info.lab3.util.TableDataMapper;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,7 +32,7 @@ public class ExamBean {
     @Inject
     private TableDataMapper<Exam> examTableDataMapper;
 
-    @Inject
+    @EJB
     private ExamRepository examRepository;
 
     private String name;

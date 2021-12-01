@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import ro.uaic.info.lab3.repositories.ExamRepository;
 import ro.uaic.info.lab3.util.SearchCriteria;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +15,7 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class TestBean {
-    @Inject
+    @EJB
     private ExamRepository examRepository;
 
     public void test() {

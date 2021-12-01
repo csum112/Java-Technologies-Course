@@ -6,12 +6,13 @@ import ro.uaic.info.lab3.entites.Student;
 import ro.uaic.info.lab3.entites.Student_;
 import ro.uaic.info.lab3.util.SearchCriteria;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class ExamRepository extends Dao<Exam> {
     public List<Exam> searchExams(SearchCriteria searchCriteria) {
         final CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
