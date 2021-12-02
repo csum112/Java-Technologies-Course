@@ -42,3 +42,17 @@ Implement an efficient way for obtaining connections to the database.
   - [x] The query must be implemented using JPA Criteria API.
 
 #### The lack of UI is due to poor time management, and various wildfly & primefaces encountered issues. (L4&L5)
+
+
+## Java Technologies - Lab 6
+Enterprise Java Beans (EJB)
+- [x] (2p) Rewrite the data access layer of the application created in the previous laboratories, implementing the repository classes as Enterprise Java Beans.
+- [x] Use the support offered by the EJB technology for implementing transactions.
+- [x] Suppose that each exam must be assigned some resources (for example: a room, a video projector, etc) and each resource is in limited number. Create a "reservation" page, allowing the reservation of a group of resources for a specific exam (all of them, or none).
+- [x] The following enterprise beans must be implemented:
+- [x] A stateless session bean that offers methods for checking the availability of a resource.
+- [x] A stateful session bean responsible with the assignment of one or more resource to a specific exam. The assignment should be atomic, either all resources are successfully assigned, or the transaction will be rolled back.
+- [x] A singleton session bean that keeps an in-memory map of the current assignments. The map will be instantiated at application startup and updated whenever the assignments change.
+- [] (2p) Create a test case that highlights the performance gain of using various forms of JPA optimizations: second level cache, lazy loading and entity graphs, etc.
+- [x] Use an EJB interceptor in order to monitor the running time of a business method.
+- [x] Create a timer that will trigger the invocation of the business method, using a specified schedule.
