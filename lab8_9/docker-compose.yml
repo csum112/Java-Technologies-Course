@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  document-service:
+    image: catalin121/document-service:1.0-SNAPSHOT
+    ports:
+      - "8080:8080"
+    links:
+      - "postgres:postgres"
+  graph-service:
+    image: catalin121/graph-service:1.0-SNAPSHOT
+    ports:
+      - "8081:8080"
+    links:
+      - "document-service:document-service"
+  postgres:
+    image: postgres
+    ports:
+       - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
