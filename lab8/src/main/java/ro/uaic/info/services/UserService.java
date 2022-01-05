@@ -13,20 +13,20 @@ import javax.persistence.EntityNotFoundException;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User getOrCreate(Long userID) {
-        return userRepository.findById(userID).orElse(createUser(userID));
+    public User getUser(String username) {
+        return userRepository.findById(username).orElseThrow(() -> new EntityNotFoundException(String.format("User with id %s not found", username)));
     }
 
-    private User createUser(Long userID) {
+    private User createUser(String username, String password) {
         final User user = new User();
-        user.setId(userID);
+        user.setUsername(username);
         userRepository.save(user);
         return user;
     }
 
-    public void ensureUserExists(Long userID) {
-        if (userRepository.findById(userID).isEmpty()) {
-            throw new EntityNotFoundException(String.format("User with id %d not found", userID));
+    public void ensureUserExists(String username) {
+        if (userRepository.findById(username).isEmpty()) {
+            throw new EntityNotFoundException(String.format("User with id %s not found", username));
         }
     }
 }

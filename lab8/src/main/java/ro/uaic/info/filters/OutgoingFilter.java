@@ -19,11 +19,13 @@ public class OutgoingFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
-        final boolean isCacheable = Objects.equals(containerRequestContext.getMethod(), "GET");
-        if (isCacheable) {
-            final String key = containerRequestContext.getSecurityContext().getUserPrincipal().getName();
-            documentCache.getCache().put(key, containerResponseContext.getEntity());
-            log.info(String.format("Refreshed cache for %s", key));
+        if (containerRequestContext.getSecurityContext().getUserPrincipal() != null) {
+            final boolean isCacheable = Objects.equals(containerRequestContext.getMethod(), "GET");
+            if (isCacheable) {
+                final String key = containerRequestContext.getSecurityContext().getUserPrincipal().getName();
+                documentCache.getCache().put(key, containerResponseContext.getEntity());
+                log.info(String.format("Refreshed cache for %s", key));
+            }
         }
     }
 }

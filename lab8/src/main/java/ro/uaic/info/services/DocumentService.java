@@ -23,8 +23,8 @@ public class DocumentService {
     private final UserService userService;
 
     @Transactional
-    public void upload(@NotNull Long userID, @NotNull DocumentDTO doc) {
-        final User user = userService.getOrCreate(userID);
+    public void upload(String username, @NotNull DocumentDTO doc) {
+        final User user = userService.getUser(username);
         final Document document = new Document();
         document.setUser(user);
         document.setName(doc.getFileName());
@@ -33,29 +33,29 @@ public class DocumentService {
     }
 
     @Transactional
-    public void update(@NotNull Long userID, @NotNull Long documentID, DocumentDTO doc) throws IllegalAccessException {
+    public void update(String username, @NotNull Long documentID, DocumentDTO doc) throws IllegalAccessException {
         final Document document = documentRepository.findById(documentID)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Document with id %d not found", documentID)));
-        userService.ensureUserExists(userID);
-        ensureDocumentBelongsToUser(document, userService.getOrCreate(userID));
+        userService.ensureUserExists(username);
+        ensureDocumentBelongsToUser(document, userService.getUser(username));
         document.setName(doc.getFileName());
         document.setData(doc.getData());
         documentRepository.update(document);
     }
 
     @Transactional
-    public void remove(@NotNull Long userID, @NotNull Long documentID) throws IllegalAccessException {
+    public void remove(String username, @NotNull Long documentID) throws IllegalAccessException {
         final Document document = documentRepository.findById(documentID)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Document with id %d not found", documentID)));
-        userService.ensureUserExists(userID);
-        ensureDocumentBelongsToUser(document, userService.getOrCreate(userID));
+        userService.ensureUserExists(username);
+        ensureDocumentBelongsToUser(document, userService.getUser(username));
         documentRepository.remove(document);
     }
 
     @Transactional
-    public List<DocumentDTO> getAll(Long userID) {
-        userService.ensureUserExists(userID);
-        return userService.getOrCreate(userID)
+    public List<DocumentDTO> getAll(String username) {
+        userService.ensureUserExists(username);
+        return userService.getUser(username)
                 .getFiles()
                 .stream()
                 .map(DocumentDTO::of)
@@ -63,7 +63,7 @@ public class DocumentService {
     }
 
     private void ensureDocumentBelongsToUser(Document document, User user) throws IllegalAccessException {
-        if (!Objects.equals(document.getUser().getId(), user.getId())) {
+        if (!Objects.equals(document.getUser().getUsername(), user.getUsername())) {
             throw new IllegalAccessException();
         }
     }

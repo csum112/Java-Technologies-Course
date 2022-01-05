@@ -13,7 +13,7 @@ import java.io.IOException;
 @AllArgsConstructor
 public final class DocumentDTO {
     private Long documentID;
-    private Long ownerID;
+    private String username;
     private String fileName;
     private byte[] data;
 
@@ -28,7 +28,7 @@ public final class DocumentDTO {
     @JsonIgnore
     public static DocumentDTO of(Document document) {
         return DocumentDTO.builder()
-                .ownerID(document.getUser().getId())
+                .username(document.getUser().getUsername())
                 .documentID(document.getId())
                 .fileName(document.getName())
                 .data(document.getData())

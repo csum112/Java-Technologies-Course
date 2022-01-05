@@ -16,7 +16,9 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    private Long id;
+    private String username;
+    private String password;
+    private String role = "user";
     @OneToMany
     private Set<Document> files;
 }
