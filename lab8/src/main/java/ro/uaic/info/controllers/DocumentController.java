@@ -1,5 +1,9 @@
 package ro.uaic.info.controllers;
 
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import ro.uaic.info.dto.DocumentDTO;
 import ro.uaic.info.multipart.FileUploadBody;
@@ -14,6 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Path("/documents")
+@OpenAPIDefinition(info = @Info(title = "Java Technologies Lab8", version = "1.0"))
 public class DocumentController {
 
     private final static Long TEST_USER = 1L;
@@ -23,6 +28,10 @@ public class DocumentController {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces({MediaType.APPLICATION_JSON})
+    @APIResponses(value = {
+            @APIResponse(responseCode = "201", description = "Upload a document"),
+            @APIResponse(responseCode = "403", description = "Requires authentication")
+    })
     public Response addDocument(@MultipartForm FileUploadBody body) throws IOException {
         documentService.upload(TEST_USER, DocumentDTO.of(body));
         return Response.status(Response.Status.CREATED)
