@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.io.IOException;
+import java.util.Set;
 
 @Builder(toBuilder = true)
 @Getter @Setter
@@ -14,4 +15,5 @@ public final class DocumentDTO {
     private String username;
     private String fileName;
     private byte[] data;
+    private Set<Long> references;
 }

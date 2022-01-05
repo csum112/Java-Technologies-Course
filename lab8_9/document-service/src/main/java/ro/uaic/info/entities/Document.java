@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -22,4 +23,6 @@ public class Document {
     private String name;
     @NotNull
     private byte[] data;
+    @ManyToMany
+    private Set<Document> references;
 }

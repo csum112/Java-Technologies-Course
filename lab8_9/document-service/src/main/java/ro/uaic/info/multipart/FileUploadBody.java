@@ -22,4 +22,11 @@ public class FileUploadBody {
     @FormParam("data")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
     private InputStream file;
+
+    /**
+     * List of longs separated by commas
+     */
+    @FormParam("references")
+    @PartType(MediaType.TEXT_PLAIN)
+    private String references;
 }
