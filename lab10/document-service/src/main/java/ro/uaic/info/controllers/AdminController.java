@@ -10,13 +10,16 @@ import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Path("/admin")
 public class AdminController {
+    final Random random = new Random();
 
     @Inject
     DocumentService documentService;
@@ -29,5 +32,29 @@ public class AdminController {
     public List<DocumentDTO> getAll() {
         log.info("Dumping all documents");
         return documentService.dump();
+    }
+
+    @GET
+    @Path("/mightFail/{rate}")
+    @RolesAllowed("user")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String mightFail(@PathParam("rate") Integer rate) {
+        russianRoulette(rate);
+        return "Hello, world";
+    }
+
+
+    @GET
+    @Path("/fallback")
+    @RolesAllowed("user")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String fallback() {
+        return "Hello, world";
+    }
+
+    private void russianRoulette(Integer rate) {
+        if (random.nextDouble() * 100 < rate) {
+            throw new RuntimeException("Pew pew");
+        }
     }
 }
